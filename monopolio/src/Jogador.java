@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 
 public class Jogador {
 
+	public static int cont = 0;
+	
 	public Image img;
+	
+	public String nome;
 	
 	private int pos;
 	
@@ -23,6 +27,7 @@ public class Jogador {
 		xi = 0;
 		yi = 0;
 		this.move(0);
+		cont++;
 	}
 	
 	public Jogador(int x, int y) {
@@ -32,7 +37,21 @@ public class Jogador {
 		xi = x;
 		yi = y;
 		this.move(0);
+		cont++;
+		nome = "Jogador " + cont;
 	}
+	
+	public Jogador(int x, int y, String nome) {
+		pos = 0;
+		_x = x;
+		_y = y;
+		xi = x;
+		yi = y;
+		this.nome = nome;
+		this.move(0);
+		cont++;
+	}
+	
 	
 	
 	public void move(int steps) {

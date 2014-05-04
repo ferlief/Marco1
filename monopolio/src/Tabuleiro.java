@@ -9,7 +9,7 @@ public class Tabuleiro extends JPanel{
 	
 
 	Image tab, dado;
-	Jogador p1;
+	Jogador[] jogadores;
 	int a;
 	public boolean resDado, valor;
 	public Tabuleiro(){
@@ -21,15 +21,19 @@ public class Tabuleiro extends JPanel{
 		Dimension screenSize=tk.getScreenSize();
 		int sl = (screenSize.width)/2;
 		int sa = (screenSize.height);
-		p1 = new Jogador(20, 20);
+		jogadores = new Jogador[6];
+		
+		jogadores[0] = new Jogador(20, 20);
+		jogadores[1] = new Jogador(15, 25);
 		
 		try
 		{
 			setBounds(0, 0, sl, sa);
 			
 			tab=ImageIO.read(new File("img/tabuleiro.png"));
-			p1.img = ImageIO.read(new File("img/black_pin.png"));
-			
+			jogadores[0].img = ImageIO.read(new File("img/black_pin.png"));
+			jogadores[1].img = ImageIO.read(new File("img/blue_pin.png"));
+
 			
 			/*
 			pblue = ImageIO.read(new File("img/blue_pin.png"));
@@ -49,7 +53,14 @@ public class Tabuleiro extends JPanel{
 	{ 		
 		super.paintComponent(g);
 		g.drawImage(tab, 0, 0, 600, 600, null);//carrega tabuleiro
-		g.drawImage(p1.img, p1._x, p1._y, null);
+		for(int i = 0; i < jogadores.length; i++)
+		{
+			if(jogadores[i]!=null && jogadores[i].img!=null)
+			{
+				g.drawImage(jogadores[i].img, jogadores[i]._x, jogadores[i]._y, null);
+			}
+		}
+		
 		/*
 		g.drawImage(pblue, getWidth()-40, getHeight()-100, null);//carrega os pinos
 		g.drawImage(pblack, getWidth()-60, getHeight()-90, null);

@@ -65,7 +65,7 @@ public class Mesa extends JFrame
 		}
 
 		tab = new Tabuleiro();
-		dp = new DadosPanel();
+		dp = new DadosPanel(tab.jogadores);
 		tab.setBounds(100, 100, 600, 600);
 		dp.setBounds(20, 700, 150, 100);
 		add(tab);
@@ -99,9 +99,9 @@ public class Mesa extends JFrame
 		public void actionPerformed(ActionEvent e)
 		{
 			int r = JogarDados();
-			tab.p1.move(r);
+			tab.jogadores[dp.jogadorComboBox.getSelectedIndex()].move(r);
 			repaint();
-			System.out.printf("%d - %d -  %d\n", tab.p1._x, tab.p1._y, r);
+			System.out.printf("%d - %d -  %d\n", tab.jogadores[0]._x, tab.jogadores[0]._y, r);
 			resposta=true;
 		}
 	}

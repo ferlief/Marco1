@@ -17,13 +17,21 @@ public class DadosPanel extends JPanel{
 	int result = 0, resultDado, VJogador;
 	boolean resposta = false;
 	boolean numJogador = false;
-	DadosPanel()
+	DadosPanel(Jogador[] jogadores)
 	{
 		random = new Random();
 		imagensDados = new Image[6];
 		valores = new int[2];
+		String[] nomeJogadores = new String[jogadores.length]; 
+		for(int i = 0; i < jogadores.length; i++)
+		{
+			if(jogadores[i] != null) {
+				nomeJogadores[i] = jogadores[i].nome;
+			}
+		}
 		jogadoresLabel = new JLabel("Selecione Jogador");
-		jogadorComboBox = new JComboBox<String>(new String[] { "Jogador 1", "Jogador 2", "Jogador 3", "Jogador 4" });
+		jogadorComboBox = new JComboBox<String>(nomeJogadores);
+		
 		//setModel(new DefaultComboBoxModel(new String[] { "Jogador 1", "Jogador 2", "Jogador 3", "Jogador 4" }));
 		jogadorComboBox.addActionListener(new NumJogador());
 		add(jogadoresLabel);
