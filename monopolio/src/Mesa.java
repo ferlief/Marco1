@@ -13,11 +13,12 @@ public class Mesa extends JFrame
 	Random random;
 	JButton jogarDado;
 	public int valores[];
-	int result = 0, resultDado, VJogador;
+	int VJogador;
 	boolean resposta = false;
 	boolean numJogador = false;
 	Image imagensDados[];
 	Tabuleiro tab;
+	DadosPanel dp;
 
 
 	//JLabel imageTab = new JLabel();
@@ -25,14 +26,14 @@ public class Mesa extends JFrame
 	{
 		super(s);
 		setLayout(null);
-		Container c=getContentPane();
+		Container c = getContentPane();
 		c.setBackground(Color.white);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		
 		jogarDado = new JButton("Jogar Dado");
 		jogarDado.setBounds(750,50,100,30);
 		jogarDado.addActionListener(new jogarDadosButton_Click());
-		c.add(jogarDado);
+		add(jogarDado);
 
 		random = new Random();
 		imagensDados = new Image[6];
@@ -64,17 +65,19 @@ public class Mesa extends JFrame
 		}
 
 		tab = new Tabuleiro();
-		c.add(tab);
-		//add(new DadosPanel());
+		dp = new DadosPanel();
+		tab.setBounds(100, 100, 600, 600);
+		dp.setBounds(20, 700, 150, 100);
+		add(tab);
+		add(dp);
 	}
 	public void paint(Graphics g)
 	{
 		super.paint(g);
-		//add(new Tabuleiro());
 		if(resposta == true)
 			{
 			for(int n = 0; n < 2; n++)
-				g.drawImage(imagensDados[valores[n] - 1], 700+(150*n), 200, 100, 100, null);
+				g.drawImage(imagensDados[valores[n] - 1], 800+(150*n), 200, 100, 100, null);
 			}
 		
 	}

@@ -12,8 +12,8 @@ public class DadosPanel extends JPanel{
 	Random random;
 	Image imagensDados[];
 	public int valores[];
-	JButton jogarDadosButton;
-	JComboBox jogador;
+	JLabel jogadoresLabel;
+	JComboBox<String> jogadorComboBox;
 	int result = 0, resultDado, VJogador;
 	boolean resposta = false;
 	boolean numJogador = false;
@@ -22,13 +22,12 @@ public class DadosPanel extends JPanel{
 		random = new Random();
 		imagensDados = new Image[6];
 		valores = new int[2];
-		jogarDadosButton = new JButton("Jogar Dados");
-		jogador = new JComboBox();
-		jogador.setModel(new DefaultComboBoxModel(new String[] { "Jogador 1", "Jogador 2", "Jogador 3", "Jogador 4" }));
-		jogarDadosButton.addActionListener(new jogarDadosButton_Click());
-		jogador.addActionListener(new NumJogador());
-		add(jogarDadosButton);
-		add(jogador);
+		jogadoresLabel = new JLabel("Selecione Jogador");
+		jogadorComboBox = new JComboBox<String>(new String[] { "Jogador 1", "Jogador 2", "Jogador 3", "Jogador 4" });
+		//setModel(new DefaultComboBoxModel(new String[] { "Jogador 1", "Jogador 2", "Jogador 3", "Jogador 4" }));
+		jogadorComboBox.addActionListener(new NumJogador());
+		add(jogadoresLabel);
+		add(jogadorComboBox);
 
 		this.setBackground(Color.white);
 
@@ -49,16 +48,6 @@ public class DadosPanel extends JPanel{
 		}
 	}
 	
-	public void JogarDados()
-	{
-		for(int n = 0; n < 2; n++){
-			result+=valores[n];
-			valores[n] = random.nextInt(6) + 1;
-		}
-			
-		repaint();
-	}
-	
 	public void paint(Graphics g)
 	{
 		super.paint(g);
@@ -71,19 +60,13 @@ public class DadosPanel extends JPanel{
 		
 	}
 	
-	public class jogarDadosButton_Click implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			JogarDados();
-			resposta=true;
-		}
-	}
 	public class NumJogador implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			//verificar qual opção da comboBox foi selecionada e setar(setPin), pra saber qual pino ira se mover
+			System.out.printf("%s Selecionado\n", jogadorComboBox.getSelectedItem().toString() );
+			jogadoresLabel.setText(jogadorComboBox.getSelectedItem().toString() + " Selecionado\n");
 			numJogador = true;
 		}
 	}

@@ -60,7 +60,6 @@ public class Tabuleiro extends JPanel{
 		*/
 		//add(new DadosPanel());
 		setBackground(Color.WHITE);
-
 	} 
 	class buttonDado implements ActionListener{
 		public void actionPerformed(ActionEvent e){
