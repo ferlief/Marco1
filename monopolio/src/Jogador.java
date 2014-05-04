@@ -1,23 +1,14 @@
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import java.io.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Jogador {
 
 	public static int cont = 0;
 	
 	public Image img;
-	
 	public String nome;
-	
-	private int pos;
-	
 	public int _x, _y;
 	
+	private int pos;
 	private int xi, yi;
 	
 	public Jogador() {
